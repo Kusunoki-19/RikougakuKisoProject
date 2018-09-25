@@ -70,19 +70,19 @@ void loop()
   static uint32_t ONE_ROTATE_STEP = 400;
   static float angle_float = 0;
   static uint32_t angle = 0; 
-  angle = 400;
+  
   if (digitalRead(SW1) == ON) {
-    //angle_float += 400 / 24;
-    //angle = (uint32_t)(angle_float);
+    angle_float += 400 / 24;
+    angle = (uint32_t)(angle_float);
     //angle = angle % ONE_ROTATE_STEP; //ONE_ROTATE_STEP からはみ出さないようにする
 
-    //angle += 400;
+   // angle += 400;
 
     uint8_t bits_8 = 0;
 
     //L6470_send(0b01101001); //GoTo_DIR命令 (DIR = 1 ->正回転)
-    //L6470_send(0b01100000); //GoTo命令
-    L6470_send(0b01000001); //Move命令 (DIR = 1 ->正回転)
+    L6470_send(0b01100000); //GoTo命令
+    //L6470_send(0b01000001); //Move命令 (DIR = 1 ->正回転)
 
     bits_8 = (uint8_t)(angle >> 16);
     L6470_send(bits_8); //上位8bit書き込み
